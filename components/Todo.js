@@ -57,7 +57,6 @@ const TodoList = ({todo, setTodo}) =>{
 }
 
 const Comment = ({reply, setReply, input, setInput}) =>{
-  const [show, setShow] = useState(false);
   const onInputChange = (e)=>{
     setInput(e.target.value);
   }
@@ -87,10 +86,6 @@ const Comment = ({reply, setReply, input, setInput}) =>{
           cursor:'pointer',
           color:'#000'
         }} />
-        <HStack spacing={2}>
-              <BiDislike onClick={() => setShow(!show)} /> { show ? <BiDislike color='blue'/> : null }
-              <BiLike onClick={() => setShow(!show)}/>{  show? <BiLike color='blue'/> : null }
-          </HStack>
         </HStack>
     </form>
   )
