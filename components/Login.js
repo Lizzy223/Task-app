@@ -13,10 +13,37 @@ import {
     Text,
     useColorModeValue,
   } from '@chakra-ui/react';
+  import Api from '../pages/api/api'
+  import {useRouter} from 'next/router'
   
   export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState('')
+    const router = useRouter()
+
+
+    const logInUser = async (e) => {
+        e.preventDefault();
+        setLoading(true);
+        const input = {
+          email: email,
+          password: password,
+        };
+        try {
+          const data = await Api("user/token", "POST", input);
+          console.log(data);
+          if (data.status) {
+            setLoading(false);
+            localStorage.setItem("user", JSON.stringify(data.data));
+            setUser(data.data);
+            router.push("/dashboard");
+            return;
+          }
+          setLoading(false);
+          setMessage(data.message);
+        } catch (error) {}
+      };
+
 
     return (
       <Flex
@@ -56,7 +83,9 @@ import {
                     color={'white'}
                     _hover={{
                         bg: 'blue.500',
-                    }}>
+                    }}
+                    onClick={(e) => logInUser(e)}
+                    >
                     Sign in
                     </Button>
                 </Stack>
