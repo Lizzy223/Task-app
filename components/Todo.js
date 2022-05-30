@@ -88,8 +88,8 @@ const Comment = ({reply, setReply, input, setInput}) =>{
           color:'#000'
         }} />
         <HStack spacing={2}>
-              <BiDislike onClick={() => setShow(!show)} /> { show ? <BiDislike color='blue'/> : <BiDislike/> }
-              <BiLike onClick={() => setShow(!show)}/>{  show? <BiLike color='blue'/> : <BiLike/> }
+              <BiDislike onClick={() => setShow(!show)} /> { show ? <BiDislike color='blue'/> : null }
+              <BiLike onClick={() => setShow(!show)}/>{  show? <BiLike color='blue'/> : null }
           </HStack>
         </HStack>
     </form>
@@ -196,7 +196,7 @@ const CommentList =({reply, setReply}) =>{
           <HStack spacing={2}>
               <BiDislike onClick={() => setShow(!show)} /> { show ? <BiDislike color='blue'/> : <BiDislike/> }
               <BiLike onClick={() => setShow(!show)}/>{  show? <BiLike color='blue'/> : <BiLike/> }
-              <Text color='red' cursor='pointer' onClick={handleDelete(replies)} >Delete</Text>
+              <Text color='red' cursor='pointer' onClick={handleDelete(replys)} >Delete</Text>
           </HStack>
         </Stack>
         ))
